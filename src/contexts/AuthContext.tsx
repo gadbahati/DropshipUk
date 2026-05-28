@@ -101,7 +101,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     // Create admin notification for new signup (clients only, not admin)
-    if (!error && data.user && email !== 'dropshiment.ecommerce@gmail.com') {
+    if (!error && data.user && email !== 'dropshimpent.ecommerce@gmail.com') {
       await supabase
         .from('admin_notifications')
         .insert({

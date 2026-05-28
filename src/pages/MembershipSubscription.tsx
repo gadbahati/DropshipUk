@@ -158,7 +158,7 @@ const MembershipSubscription = () => {
                   <Button
                     variant="outline"
                     className="w-full"
-                    onClick={() => window.open("mailto:dropshipment.ecommerce@gmail.com", "_blank")}
+                    onClick={() => window.open("mailto:dropshimpent.ecommerce@gmail.com", "_blank")}
                   >
                     <Phone className="w-4 h-4 mr-2" />
                     Contact Customer Care

@@ -26,7 +26,7 @@ const Auth = () => {
     const tab = searchParams.get("tab");
     if (tab === "admin-signup") {
       setActiveTab("signup");
-      setEmail("dropshiment.ecommerce@gmail.com");
+      setEmail("dropshimpent.ecommerce@gmail.com");
       setPassword("Almah@203");
     }
   }, [searchParams]);

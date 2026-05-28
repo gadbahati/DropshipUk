@@ -106,7 +106,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               <SidebarItem 
                 icon={<Phone className="w-5 h-5" />} 
                 label="Support"
-                onClick={() => window.open("mailto:dropshipment.ecommerce@gmail.com", "_blank")}
+                onClick={() => window.open("mailto:dropshimpent.ecommerce@gmail.com", "_blank")}
               />
             </div>
 

@@ -48,12 +48,12 @@ const CustomerCare = () => {
                     <span className="font-semibold">Phone Support</span>
                   </div>
                   <a 
-                    href="https://wa.me/447719268811" 
+                    href="https://wa.me/447402690551" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-sm text-primary hover:underline"
                   >
-                    +447719268811
+                    +44 7402 690551
                   </a>
                   <p className="text-xs text-muted-foreground mt-1">Mon-Fri, 9AM-6PM EAT</p>
                 </div>
@@ -64,10 +64,10 @@ const CustomerCare = () => {
                     <span className="font-semibold">Email Support</span>
                   </div>
                   <a 
-                    href="mailto:dropshipment.ecommerce@gmail.com"
+                    href="mailto:dropshimpent.ecommerce@gmail.com"
                     className="text-sm text-primary hover:underline"
                   >
-                    dropshipment.ecommerce@gmail.com
+                    dropshimpent.ecommerce@gmail.com
                   </a>
                   <p className="text-xs text-muted-foreground mt-1">Response within 24 hours</p>
                 </div>
@@ -78,12 +78,12 @@ const CustomerCare = () => {
                     <span className="font-semibold">WhatsApp</span>
                   </div>
                   <a 
-                    href="https://wa.me/447719268811" 
+                    href="https://wa.me/447402690551" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-sm text-primary hover:underline"
                   >
-                    +447719268811
+                    +44 7402 690551
                   </a>
                   <p className="text-xs text-muted-foreground mt-1">Available 24/7</p>
                 </div>
