@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { DollarSign, Calendar, CreditCard } from "lucide-react";
+import { DollarSign, Calendar, CreditCard, ArrowUpRight, ArrowDownRight, Clock } from "lucide-react";
 import { format } from "date-fns";
 
 interface Payment {
@@ -84,91 +86,97 @@ const AllPaymentsTable = () => {
   };
 
   if (loading) {
-    return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Loading...</CardTitle>
-        </CardHeader>
-      </Card>
-    );
+    return <div className="p-8 text-center text-slate-500">Loading financial records...</div>;
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <DollarSign className="h-5 w-5" />
-          All Payments Activity
-        </CardTitle>
+    <Card className="border-none shadow-sm rounded-3xl overflow-hidden bg-white">
+      <CardHeader className="pb-2">
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-lg font-bold text-[#2b3674]">Financial Activity Log</CardTitle>
+            <CardDescription className="text-slate-500">Real-time history of all incoming payments and transactions.</CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left p-3">User</th>
-                <th className="text-left p-3">Type</th>
-                <th className="text-left p-3">Amount</th>
-                <th className="text-left p-3">Method</th>
-                <th className="text-left p-3">Date</th>
-                <th className="text-left p-3">Status</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table>
+            <TableHeader className="bg-slate-50/50">
+              <TableRow className="border-none hover:bg-transparent">
+                <TableHead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Client</TableHead>
+                <TableHead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Type</TableHead>
+                <TableHead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Amount</TableHead>
+                <TableHead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Method</TableHead>
+                <TableHead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Date</TableHead>
+                <TableHead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-right">Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {payments.length === 0 ? (
-                <tr>
-                  <td colSpan={6} className="text-center p-6 text-muted-foreground">
-                    No payments yet
-                  </td>
-                </tr>
+                <TableRow>
+                  <TableCell colSpan={6} className="text-center py-10 text-slate-400">
+                    No financial activity recorded yet.
+                  </TableCell>
+                </TableRow>
               ) : (
                 payments.map((payment) => (
-                  <tr key={`${payment.type}-${payment.id}`} className="border-b hover:bg-muted/50">
-                    <td className="p-3">
-                      <div>
-                        <div className="font-medium">{payment.profiles?.full_name}</div>
-                        <div className="text-xs text-muted-foreground">{payment.profiles?.email}</div>
+                  <TableRow key={`${payment.type}-${payment.id}`} className="border-b border-slate-50 hover:bg-slate-50/30 transition-colors">
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-[10px]">
+                          {payment.profiles?.full_name?.substring(0, 2).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="font-bold text-[#2b3674] text-sm">{payment.profiles?.full_name}</p>
+                          <p className="text-[10px] text-slate-400">{payment.profiles?.email}</p>
+                        </div>
                       </div>
-                    </td>
-                    <td className="p-3">
-                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline" className={
+                        payment.type === 'Activation' 
+                          ? "bg-blue-50 text-blue-700 border-blue-100" 
+                          : "bg-cyan-50 text-cyan-700 border-cyan-100"
+                      }>
                         {payment.type}
-                      </span>
-                    </td>
-                    <td className="p-3">
-                      <div>
-                        <div className="font-medium">${payment.amount_usd}</div>
-                        <div className="text-xs text-muted-foreground">KES {payment.amount_kes}</div>
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-1 font-bold text-[#2b3674]">
+                        <span className="text-green-500 text-xs">+$</span>
+                        {payment.amount_usd}
+                        <span className="text-[10px] text-slate-400 font-normal ml-1">({payment.amount_kes} KES)</span>
                       </div>
-                    </td>
-                    <td className="p-3">
-                      <div className="flex items-center gap-2 text-sm">
-                        <CreditCard className="h-4 w-4" />
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-1.5 text-xs text-slate-600">
+                        <CreditCard className="w-3.5 h-3.5 text-slate-400" />
                         {payment.payment_method || 'M-Pesa'}
                       </div>
-                    </td>
-                    <td className="p-3">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
-                        {format(new Date(payment.created_at), 'MMM dd, yyyy HH:mm')}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                        {format(new Date(payment.created_at), 'MMM dd, HH:mm')}
                       </div>
-                    </td>
-                    <td className="p-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Badge className={
                         payment.status === 'approved' 
-                          ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                          ? "bg-green-50 text-green-700 border-green-100 hover:bg-green-50"
                           : payment.status === 'rejected'
-                          ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                          : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                      }`}>
+                          ? "bg-red-50 text-red-700 border-red-100 hover:bg-red-50"
+                          : "bg-amber-50 text-amber-700 border-amber-100 hover:bg-amber-50"
+                      }>
                         {payment.status}
-                      </span>
-                    </td>
-                  </tr>
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
                 ))
               )}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </CardContent>
     </Card>
