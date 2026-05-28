@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    /* UK Blue - Primary Brand Color */
+    --primary: 213 94% 46%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    /* UK Red - Accent Color */
+    --accent: 0 84% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* UK Red for branding */
+    --brand-red: 0 84% 60%;
+    --brand-blue: 213 94% 46%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 213 94% 46%;
+
+    --radius: 0.5rem;
+
+    /* UK Blue themed sidebar */
+    --sidebar-background: 213 94% 46%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 213 94% 46%;
+    --sidebar-accent: 213 94% 56%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 213 94% 56%;
+    --sidebar-ring: 0 0% 100%;
+
+    /* Success colors for verified/active states */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Warning colors for pending states */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    /* Info colors for in-transit */
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    
+    /* UK-themed Gradients */
+    --gradient-uk: linear-gradient(135deg, hsl(213, 94%, 46%), hsl(0, 84%, 60%));
+    --gradient-brand: linear-gradient(135deg, hsl(213, 94%, 46%), hsl(213, 89%, 35%));
+    --gradient-success: linear-gradient(135deg, hsl(142, 76%, 36%), hsl(142, 71%, 45%));
+    --gradient-premium: linear-gradient(135deg, hsl(213, 94%, 46%), hsl(213, 94%, 56%));
+    
+    /* Shadows with UK blue tint */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 20px hsla(213, 94%, 46%, 0.3);
+    --shadow-uk: 0 4px 16px hsla(213, 94%, 46%, 0.2);
+    
+    /* Transitions */
+    --transition-smooth: all 0.2s ease;
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 213 94% 56%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 84% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --brand-red: 0 84% 65%;
+    --brand-blue: 213 94% 56%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 213 94% 56%;
+
+    --sidebar-background: 213 94% 35%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 213 94% 35%;
+    --sidebar-accent: 213 94% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 213 94% 45%;
+    --sidebar-ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
